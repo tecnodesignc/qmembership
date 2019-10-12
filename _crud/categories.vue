@@ -108,7 +108,7 @@
               value: {},
               type: 'media',
               zone: 'mainimage',
-              entity: "Modules\\Iplace\\Entities\\Category",
+              entity: "Modules\\Iprofile\\Entities\\Category",
               enitityId: null
             },
           },

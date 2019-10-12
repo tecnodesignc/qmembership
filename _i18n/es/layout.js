@@ -1,12 +1,16 @@
 export default {
-  newPlace : 'Nuevo lugar',
-  updatePlace : 'Actualizar Lugar',
-  newCategory : 'Nueva Categoría',
-  updateCategory : 'Actualizar Categoría',
-  form : {
-    fromDay : 'Desde el día',
-    untilDay : 'Hasta el día',
-    fromTime : 'Desde la hora',
-    untilTime : 'Hasta la hora',
-  }
+    newProfile: 'New Profile',
+    updateProfile: 'Update Profile',
+    newProfession: 'New Profession',
+    updateProfession: 'Update Profession',
+    newCategory: 'New Category',
+    updateCategory: 'Update Category',
+    form: {
+        fromDay: 'From day',
+        untilDay: 'Until day',
+        fromTime: 'From time',
+        untilTime: 'Until time',
+    },
+    newDistrict: 'Nuevo Distrito',
+    updateDistrict: 'Actualziar Distrito',
 }
