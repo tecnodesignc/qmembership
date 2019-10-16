@@ -51,6 +51,17 @@ export default {
         icon: 'fas fa-layer-group',
         middleware: [auth, access]
     },
+    congregation: {
+        permission: 'membership.congregations.index',
+        activated: true,
+        path: '/membership/congregation/index',
+        name: 'qmembership.admin.congregation',
+        layout: require('@imagina/qmembership/_layouts/admin/congregations/index').default,
+        containerLayout: master,
+        title: 'qmembership.sidebar.adminCongregation',
+        icon: 'fas fa-layer-group',
+        middleware: [auth, access]
+    },
     district: {
         permission: 'membership.districts.index',
         activated: true,
@@ -59,6 +70,17 @@ export default {
         layout: require('@imagina/qmembership/_layouts/admin/district/index').default,
         containerLayout: master,
         title: 'qmembership.sidebar.adminDistrict',
+        icon: 'fas fa-layer-group',
+        middleware: [auth, access]
+    },
+    committee: {
+        permission: 'membership.districts.index',
+        activated: true,
+        path: '/membership/committee/index',
+        name: 'qmembership.admin.committee',
+        layout: require('@imagina/qmembership/_layouts/admin/committee/index').default,
+        containerLayout: master,
+        title: 'qmembership.sidebar.adminCommittee',
         icon: 'fas fa-layer-group',
         middleware: [auth, access]
     },
