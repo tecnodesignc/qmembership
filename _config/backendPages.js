@@ -74,13 +74,35 @@ export default {
         middleware: [auth, access]
     },
     committee: {
-        permission: 'membership.districts.index',
+        permission: 'membership.committee.index',
         activated: true,
         path: '/membership/committee/index',
         name: 'qmembership.admin.committee',
         layout: require('@imagina/qmembership/_layouts/admin/committee/index').default,
         containerLayout: master,
         title: 'qmembership.sidebar.adminCommittee',
+        icon: 'fas fa-layer-group',
+        middleware: [auth, access]
+    },
+    study: {
+        permission: 'membership.study.index',
+        activated: true,
+        path: '/membership/studies/index',
+        name: 'qmembership.admin.study',
+        layout: require('@imagina/qmembership/_layouts/admin/study/index').default,
+        containerLayout: master,
+        title: 'qmembership.sidebar.adminStudy',
+        icon: 'fas fa-layer-group',
+        middleware: [auth, access]
+    },
+    workstation: {
+        permission: 'membership.workstations.index',
+        activated: true,
+        path: '/membership/workstations/index',
+        name: 'qmembership.admin.workstations',
+        layout: require('@imagina/qmembership/_layouts/admin/workstations/index').default,
+        containerLayout: master,
+        title: 'qmembership.sidebar.adminWorkstation',
         icon: 'fas fa-layer-group',
         middleware: [auth, access]
     },
