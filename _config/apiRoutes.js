@@ -7,7 +7,12 @@ const urlBase = `${baseApiUrl}/${moduleName}/${moduleVersion}`
 export default {
   urlBase : urlBase,
   version: moduleVersion,
-  categories: `${urlBase}/categories`,
+  professions: `${urlBase}/professions`,
+  districts: `${urlBase}/distric`,
+  congregations: `${urlBase}/congregation`,
+  committee: `${urlBase}/committee`,
+  workstations: `${urlBase}/wordstations`,
   profiles: `${urlBase}/profiles`,
-  schedules: `${urlBase}/schedules`,
+  address: `${urlBase}/address`,
+  studies: `${urlBase}/studies`,
 }

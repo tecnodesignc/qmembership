@@ -7,7 +7,7 @@
     computed: {
       crudData() {
         return {
-          apiRoute: 'apiRoutes.qmembership.district',
+          apiRoute: 'apiRoutes.qmembership.districts',
           permission: 'membership.districts',
           create: {
             title: this.$tr('qmembership.layout.newDistrict'),
@@ -15,23 +15,18 @@
           read: {
             columns: [
               {name: 'id', label: this.$tr('ui.form.id'), field: 'id', style: 'width: 50px'},
-              {name: 'name', label: this.$tr('ui.form.title'), field: 'title', align: 'rigth'},
-
-              {
-                name: 'parent', label: this.$tr('ui.form.parent'), field: 'parent', align: 'left',
-                format: val => val ? (val.title ? val.title : '-') : '-'
-              },
+              {name: 'name', label: this.$tr('ui.form.title'), field: 'name', align: 'center'},
               {
                 name: 'created_at', label: this.$tr('ui.form.createdAt'), field: 'createdAt', align: 'left',
                 format: val => val ? this.$trd(val) : '-',
               },
               {name: 'actions', label: this.$tr('ui.form.actions'), align: 'left'},
             ],
-            requestParams: {include: 'parent'}
+            requestParams: {}
           },
           update: {
             title: this.$tr('qmembership.layout.updateDistrict'),
-            requestParams: {include: 'parent'}
+            requestParams: {}
           },
           delete: true,
           formLeft: {

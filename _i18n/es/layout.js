@@ -1,10 +1,8 @@
 export default {
-    newProfile: 'New Profile',
-    updateProfile: 'Update Profile',
-    newProfession: 'New Profession',
-    updateProfession: 'Update Profession',
-    newCategory: 'New Category',
-    updateCategory: 'Update Category',
+    newProfile: 'Nuevo Perfil',
+    updateProfile: 'Actualizar Perfil',
+    newProfession: 'Nueva Profesión',
+    updateProfession: 'Actualizar Profesión',
     form: {
         fromDay: 'From day',
         untilDay: 'Until day',
@@ -12,5 +10,11 @@ export default {
         untilTime: 'Until time',
     },
     newDistrict: 'Nuevo Distrito',
-    updateDistrict: 'Actualziar Distrito',
+    updateDistrict: 'Actualizar Distrito',
+    newDistrict: 'Nuevo Distrito',
+    updateDistrict: 'Actualizar Distrito',
+    newCommittee: 'Nuevo Comité',
+    updateCommittee: 'Actualizar Comité',
+    newProfile: 'Nuevo miembro',
+    updateProfile: 'Actualizar miembro',
 }

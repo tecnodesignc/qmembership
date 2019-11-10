@@ -8,7 +8,7 @@
       crudData() {
         return {
           apiRoute: 'apiRoutes.qmembership.profiles',
-          permission: 'membership.profiles.index',
+          permission: 'membership.profiles',
           create: {
             title: this.$tr('qmembership.layout.newPlace'),
             to: 'qmembership.admin.profiles.create',

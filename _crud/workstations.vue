@@ -7,10 +7,10 @@
     computed: {
       crudData() {
         return {
-          apiRoute: 'apiRoutes.qmembership.studies',
+          apiRoute: 'apiRoutes.qmembership.workstations',
           permission: 'membership.committees',
           create: {
-            title: this.$tr('qmembership.layout.newStudy'),
+            title: this.$tr('qmembership.layout.newProfession'),
           },
           read: {
             columns: [
@@ -24,7 +24,7 @@
             ],
           },
           update: {
-            title: this.$tr('qmembership.layout.updateStudy'),
+            title: this.$tr('qmembership.layout.updateProfession'),
           },
           delete: true,
           formLeft: {
