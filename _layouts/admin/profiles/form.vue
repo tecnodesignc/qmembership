@@ -10,6 +10,26 @@
         <div class="row gutter-x-sm">
 
 
+          <div class="col-12 col-md-6">
+            <q-select
+            v-model="form.districtId"
+            float-label="Distrito"
+            @input="val => { getCongregations() }"
+            filter
+            :options="districtsOptions"
+            />
+          </div>
+
+          <div class="col-12 col-md-6">
+            <q-select
+            v-model="form.congregationId"
+            float-label="Congregación"
+            filter
+            :disable="congregationsOptions.length>0 ? true : false"
+            :options="congregationsOptions"
+            />
+          </div>
+
           <!-- first row -->
           <div class="col-12 col-md-4" >
             <!--Name-->
@@ -59,6 +79,25 @@
             radio
             :options="civilStatusOptions"
             />
+          </div>
+
+          <div class="col-12 col-md-4 text-center" v-if="form.civilStatus==2">
+            <label>¿Pasó por el Tribunal Eclesiástico de la IPUC?</label>
+            <br>
+            <q-radio v-model="form.options.ipuc" val="true" label="Sí" />
+            <q-radio v-model="form.options.ipuc" val="false" label="No" />
+          </div>
+
+          <div class="col-12 col-md-4 text-center" v-if="form.options.ipuc">
+            <label>¿Que concepto le dieron?</label>
+            <br>
+            <q-radio v-model="form.options.ipucFavorable" val="true" label="Favorable" />
+            <q-radio v-model="form.options.ipucFavorable" val="false" label="Desfavorable" />
+          </div>
+
+          <div class="col-12 col-md-4 text-center" v-if="form.options.ipuc">
+            <label>Adjuntar</label>
+            <q-uploader url="https://ipuc.upload/api" />
           </div>
           <!-- end second row -->
 
@@ -209,6 +248,8 @@
         professionsOptions:[],
         studiesOptions:[],
         usersOptions:[],
+        congregationsOptions:[],
+        districtsOptions:[],
         form:{
           name:'',
           lastName:'',
@@ -220,6 +261,8 @@
           birthplace:'',
           studyId:0,
           professionId:0,
+          congregationId:0,
+          districtId:0,
           address:[
             {
               address:'',
@@ -229,7 +272,12 @@
           baptismDate:'',
           ministerId:0,
           holySpiritDate:'',
-          observations:''
+          observations:'',
+          options:{
+            ipuc:false,
+            ipucFavorable:'',
+            ipucFile:''
+          }
 
         },
         buttonActions: {}
@@ -257,6 +305,8 @@
         this.getStudies()//Get categories
         this.getProfessions()//Get categories
         this.getUsers()//Get categories
+        // this.getCongregations()//Get categories
+        this.getDistricts()//Get categories
         //Set default button action
         this.buttonActions = {label: this.optionsFields.btn.saveAndReturn, value: 1}
       },
@@ -378,7 +428,7 @@
           this.loading.page = false
         })
       },
-      //Get studies
+      //Get users
       getUsers() {
         this.loading.page = true
         let configName = 'apiRoutes.quser.users'
@@ -391,6 +441,52 @@
           console.log(response.data);
           for(var i=0;i<response.data.length;i++){
             this.usersOptions.push({id:response.data[i].id,value:response.data[i].id,label:response.data[i].firstName+response.data[i].lastName});
+          }
+          // this.civilStatus = this.$helper.array.tree(response.data)
+          this.loading.page = false
+        }).catch(error => {
+          this.$alert.error({message: this.$tr('ui.message.errorRequest'), pos: 'bottom'})
+          this.loading.page = false
+        })
+      },
+      //Get congregations
+      getCongregations() {
+        this.loading.page = true
+        let configName = 'apiRoutes.qmembership.congregations'
+        let params = {//Params to request
+          refresh: true,
+          params: {
+            filter:{
+              district:this.form.districtId
+            }
+          },
+        }
+        //Request
+        this.$crud.index(configName, params).then(response => {
+          console.log(response.data);
+          for(var i=0;i<response.data.length;i++){
+            this.congregationsOptions.push({id:response.data[i].id,value:response.data[i].id,label:response.data[i].name});
+          }
+          // this.civilStatus = this.$helper.array.tree(response.data)
+          this.loading.page = false
+        }).catch(error => {
+          this.$alert.error({message: this.$tr('ui.message.errorRequest'), pos: 'bottom'})
+          this.loading.page = false
+        })
+      },
+      //Get districts
+      getDistricts() {
+        this.loading.page = true
+        let configName = 'apiRoutes.qmembership.districts'
+        let params = {//Params to request
+          refresh: true,
+          params: {include: ''},
+        }
+        //Request
+        this.$crud.index(configName, params).then(response => {
+          console.log(response.data);
+          for(var i=0;i<response.data.length;i++){
+            this.districtsOptions.push({id:response.data[i].id,value:response.data[i].id,label:response.data[i].name});
           }
           // this.civilStatus = this.$helper.array.tree(response.data)
           this.loading.page = false
