@@ -3,112 +3,152 @@
     <!--Content-->
     <div class="relative-position q-mb-lg backend-page">
       <!--Form-->
+      <div class="text-center">
+        <h5>Registro de miembros</h5>
+      </div>
       <div class="box">
         <div class="row gutter-x-sm">
-          <!--Languages-->
-          <div class="col-12">
-            <locales ref="localeComponent" v-model="locale" @validate="$v.$touch()"/>
+
+
+          <!-- first row -->
+          <div class="col-12 col-md-4" >
+            <!--Name-->
+            <q-field>
+              <q-input :stack-label="`${$tr('ui.form.name')}*`"
+                       type="text" v-model="form.name"/>
+            </q-field>
           </div>
-          <!---Form Left-->
-          <div class="col-12 col-md-8" v-if="locale.success">
-            <!--Title-->
-            <q-field
-              :error="$v.locale.formTemplate.title.$error"
-              :error-label="$tr('ui.message.fieldRequired')"
-            >
-              <q-input :stack-label="`${$tr('ui.form.title')} (${locale.language}) *`"
-                       type="text" v-model="locale.formTemplate.title" @input="setSlug"/>
+          <div class="col-12 col-md-4" >
+            <!--lastName-->
+            <q-field>
+              <q-input :stack-label="`${$tr('ui.form.lastName')}*`"
+                       type="text" v-model="form.lastName"/>
             </q-field>
-            <!--Slug-->
-            <q-field
-              :error="$v.locale.formTemplate.slug.$error"
-              :error-label="$tr('ui.message.fieldRequired')"
-            >
-              <q-input :stack-label="`${$tr('ui.form.slug')} (${locale.language}) *`"
-                       type="text" v-model="locale.formTemplate.slug"/>
-            </q-field>
-            <!--Summary-->
-            <q-field
-              :error="$v.locale.formTemplate.summary.$error"
-              :error-label="$tr('ui.message.fieldRequired')"
-            >
-              <q-input :stack-label="`${$tr('ui.form.summary')} (${locale.language}) *`"
-                       type="textarea" v-model="locale.formTemplate.summary" rows="3"/>
-            </q-field>
-            <!--Description-->
-            <q-field
-              :error="$v.locale.formTemplate.description.$error"
-              :error-label="$tr('ui.message.fieldRequired')"
-            >
-              <div class="input-title">
-                {{`${$tr('ui.form.description')} (${locale.language}) *`}}
-              </div>
-              <q-editor v-model="locale.formTemplate.description" :toolbar="editorText.toolbar"/>
-            </q-field>
-            <!--Address-->
-            <q-input color="primary" v-model="locale.formTemplate.address.address"
-                     :stack-label="`${$tr('ui.form.address')}`"
-                     placeholder="Type at least 3 characters">
-              <q-autocomplete
-                @search="searchAddress"
-                :min-characters="3"
-                @selected="selectAddress"
-              />
-            </q-input>
-            <!--Map-->
-            <div id="mapCanvas" style="width:100%; height:300px"></div>
           </div>
-          <!---Form Right-->
-          <div class="col-12 col-md-4" v-if="locale.success">
-            <!--Category-->
-            <q-field
-              :error="$v.locale.formTemplate.categoryId.$error"
-              :error-label="$tr('ui.message.fieldRequired')"
-            >
-              <div class="input-title text-grey">
-                {{`${$tr('ui.form.category')} *`}}
-                <!---Component CRUD categories-->
-                <crud just-create @created="getCategories"
-                      :crud-data="import('@imagina/qplace/_crud/categories')"/>
-              </div>
-              <tree-select
-                :clearable="false"
-                :options="options.categories"
-                value-consists-of="BRANCH_PRIORITY"
-                v-model="locale.formTemplate.categoryId"
-                placeholder=""
-              />
+          <div class="col-12 col-md-4" >
+            <!-- email -->
+            <q-field>
+              <q-input :stack-label="`${$tr('ui.form.email')}*`"
+                       type="email" v-model="form.email"/>
             </q-field>
-            <q-progress indeterminate color="primary" v-if="loading.categories"/>
-            <!--Categories-->
-            <div class="input-title text-grey">
-              {{`${$trp('ui.form.category')}`}}
-              <!---Component CRUD categories-->
-              <crud just-create @created="getCategories"
-                    :crud-data="import('@imagina/qplace/_crud/categories')"/>
-            </div>
-            <recursive-list v-model="locale.formTemplate.categories"
-                            :items="options.categories"/>
-            <!--schedules-->
-            <schedules-form v-model="locale.formTemplate.schedules" class="q-mt-sm"/>
-            <!--Image-->
-            <media-form
-              entity="Modules\Membership\Entities\Place"
-              :entity-id="itemId ? itemId : ''"
-              v-model="locale.formTemplate.mediasSingle"
-              :label="`${$tr('ui.form.image')}`"
-              zone="slideimage"
+          </div>
+
+          <!-- second row -->
+          <div class="col-12 col-md-4" >
+            <!-- Type identification -->
+            <q-select
+            v-model="form.docType"
+            float-label="Tipo de identificación"
+            radio
+            :options="typeIdentificationOptions"
             />
-            <!--Phone 1-->
-            <q-input :stack-label="`${$tr('ui.form.phone')} 1`" type="number"
-                     v-model="locale.formTemplate.options.phone1"/>
-            <!--Phone 2-->
-            <q-input :stack-label="`${$tr('ui.form.phone')} 2`" type="number"
-                     v-model="locale.formTemplate.options.phone2"/>
-            <!--Phone 3-->
-            <q-input :stack-label="`${$tr('ui.form.phone')} 3`" type="number"
-                     v-model="locale.formTemplate.options.phone3"/>
           </div>
+          <div class="col-12 col-md-4" >
+            <!-- identification -->
+            <q-field>
+              <q-input stack-label="Documento de identidad"
+                       type="text" v-model="form.identification"/>
+            </q-field>
+          </div>
+
+          <div class="col-12 col-md-4" >
+            <!-- civilStatus -->
+            <q-select
+            v-model="form.civilStatus"
+            float-label="Estado civil"
+            radio
+            :options="civilStatusOptions"
+            />
+          </div>
+          <!-- end second row -->
+
+          <!-- third row -->
+
+          <!-- Birthday -->
+          <div class="col-12 col-md-4" >
+            <q-datetime stack-label="Fecha de nacimiento" header-label="Fecha de nacimiento" v-model="form.birthday" type="date" />
+          </div>
+
+          <!-- Birthplace -->
+          <div class="col-12 col-md-8" >
+            <q-field>
+              <q-input stack-label="Lugar de nacimiento"
+                       type="text" v-model="form.birthplace"/>
+            </q-field>
+          </div>
+
+          <!-- end third row -->
+
+          <!-- four row -->
+
+          <!-- Studies -->
+          <div class="col-12 col-md-4" >
+            <q-select
+            v-model="form.studyId"
+            float-label="Nivel de escolaridad"
+            radio
+            :options="studiesOptions"
+            />
+          </div>
+
+          <!-- Ocupación actual -->
+          <div class="col-12 col-md-4" >
+            <q-select
+            v-model="form.professionId"
+            float-label="Ocupación actual"
+            filter
+            :options="professionsOptions"
+            />
+          </div>
+          <!-- Phone -->
+          <div class="col-12 col-md-4" >
+            <q-field>
+              <q-input stack-label="Teléfono"
+                       type="text" v-model="form.address[0].phone"/>
+            </q-field>
+          </div>
+
+          <!-- end four row -->
+
+          <!-- five row -->
+
+          <!-- Dirección de residencia -->
+          <div class="col-12 col-md-12" >
+            <q-field>
+              <q-input stack-label="Dirección de residencia"
+                       type="text" v-model="form.address[0].address"/>
+            </q-field>
+          </div>
+
+          <!-- end five row -->
+
+          <!-- six row -->
+
+          <!-- baptism date  -->
+
+          <div class="col-12 col-md-4" >
+            <q-datetime stack-label="Fecha de bautismo" header-label="Fecha de bautismo" v-model="form.baptismDate" type="date" />
+          </div>
+
+          <div class="col-12 col-md-4">
+            <q-select
+            v-model="form.ministerId"
+            float-label="Pastor que lo bautizó"
+            filter
+            :options="usersOptions"
+            />
+          </div>
+
+          <div class="col-12 col-md-4" >
+            <q-datetime stack-label="Fecha recepción espíritu santo" header-label="Fecha recepción espíritu santo" v-model="form.holySpiritDate" type="date" />
+          </div>
+
+          <!-- end six row -->
+
+          <div class="col-12 col-md-12">
+             <q-input stack-label="Observaciones" v-model="form.observations" type="textarea" />
+          </div>
+
         </div>
       </div>
 
@@ -143,9 +183,6 @@
   </div>
 </template>
 <script>
-  //Plugins
-  import {required} from 'vuelidate/lib/validators'
-  import {gmaps} from '@imagina/qplace/_plugins/gmaps'
   //Components
   import locales from '@imagina/qsite/_components/locales'
   import mediaForm from '@imagina/qmedia/_components/form'
@@ -155,10 +192,6 @@
   export default {
     props: {},
     components: {locales, mediaForm, recursiveList, schedulesForm},
-    watch: {},
-    validations() {
-      return this.getObjectValidation()
-    },
     mounted() {
       this.$nextTick(function () {
         this.init()
@@ -167,83 +200,37 @@
     data() {
       return {
         loading: {
-          page: false,
-          categories: false
+          page: false
         },
-        configName: 'apiRoutes.qplace.places',
+        configName: 'apiRoutes.qmembership.profiles',
         itemId: false,
-        map: {
-          geocoder: '',
-          marker: '',
-          class: '',
-        },
-        options: {
-          categories: [],
-          schedules: [],
-        },
-        locale: {
-          fields: {
-            id: '',
-            address: {
-              address: '',
-              latitude: '',
-              longitude: ''
-            },
-            cityId: 0,
-            zoneId: 0,
-            serviceId: 0,
-            provinceId: 0,
-            rangeId: 0,
-            gama: 0,
-            quantityPerson: 0,
-            weather: 0,
-            housing: 0,
-            transport: 0,
-            userId: this.$store.state.quserAuth.userId,
-            mediasSingle: {},
-            options: {
-              phone1: '',
-              phone2: '',
-              phone3: '',
-            },
-            categoryId: null,
-            categories: [],
-            schedules: false
-          },
-          fieldsTranslatable: {
-            title: '',
-            slug: '',
-            description: '',
-            summary: '',
-            metaTitle: '',
-            metaKeywords: '',
-            metaDescription: ''
-          },
-          validations: {
-            title: {required},
-            slug: {required},
-            summary: {required},
-            description: {required},
-            categoryId: {required}
-          }
-        },
-        editorText: {
-          toolbar: [
-            ['bold', 'italic', 'strike', 'underline', 'removeFormat'],
-            ['link'],
-            [
-              {
-                label: 'Font Size',
-                icon: 'format_size',
-                fixedLabel: true,
-                fixedIcon: true,
-                list: 'no-icons',
-                options: ['size-1', 'size-2', 'size-3', 'size-4', 'size-5', 'size-6', 'size-7']
-              }
-            ],
-            ['quote', 'unordered', 'ordered'],
-            ['fullscreen']
-          ]
+        civilStatusOptions:[],
+        typeIdentificationOptions:[],
+        professionsOptions:[],
+        studiesOptions:[],
+        usersOptions:[],
+        form:{
+          name:'',
+          lastName:'',
+          email:'',
+          civilStatus:0,
+          identification:'',
+          docType:0,
+          birthday:'',
+          birthplace:'',
+          studyId:0,
+          professionId:0,
+          address:[
+            {
+              address:'',
+              phone:''
+            }
+          ],
+          baptismDate:'',
+          ministerId:0,
+          holySpiritDate:'',
+          observations:''
+
         },
         buttonActions: {}
       }
@@ -265,10 +252,11 @@
         //Search id in params URL
         if (this.$route.params.id) this.itemId = this.$route.params.id
         if (this.itemId) await this.getData()//Get data if is edit
-        this.getCategories()//Get categories
-        //Init Map
-        gmaps.initializeGoogleApi()
-        this.initializeMap()
+        this.getCivilStatus()//Get categories
+        this.getTypeIdentifications()//Get categories
+        this.getStudies()//Get categories
+        this.getProfessions()//Get categories
+        this.getUsers()//Get categories
         //Set default button action
         this.buttonActions = {label: this.optionsFields.btn.saveAndReturn, value: 1}
       },
@@ -288,15 +276,11 @@
             }
             //Request
             this.$crud.show(this.configName, itemId, params).then(response => {
-              //Get categories ID
-              let categories = []
-              response.data.categories.forEach(category => {
-                categories.push(category.id)
-              })
+
               //Replace categories to response
-              response.data.categories = this.$clone(categories)
+              // response.data.categories = this.$clone(categories)
               //Set response to form
-              this.locale.form = this.$clone(response.data)
+              // this.locale.form = this.$clone(response.data)
               this.loading.page = false
               resolve(true)//Resolve
             }).catch(error => {
@@ -309,107 +293,111 @@
           }
         })
       },
-      //Init Map
-      initializeMap() {
-        setTimeout(() => {
-          //MAP
-          var latitude = this.locale.formTemplate.address.latitude;
-          var longitude = this.locale.formTemplate.address.longitude;
-          var OLD = new google.maps.LatLng(latitude, longitude);
-          var options = {
-            zoom: 16,
-            center: OLD,
-            mapTypeId: google.maps.MapTypeId.ROADMAP,// ROADMAP | SATELLITE | HYBRID | TERRAIN
-          };
 
-          this.map.class = new google.maps.Map(document.getElementById("mapCanvas"), options);
-
-          //GEOCODER
-          this.map.geocoder = new google.maps.Geocoder();
-
-          this.map.marker = new google.maps.Marker({
-            map: this.map.class,
-            draggable: true,
-            position: OLD
-          });
-
-          //Add a listener to the marker for reverse geocoding
-          google.maps.event.addListener(this.map.marker, 'drag', () => {
-            this.geocoder.geocode({'latLng': this.map.marker.getPosition()}, (results, status) => {
-              if (status == google.maps.GeocoderStatus.OK) {
-                if (results[0]) {
-                  this.locale.formTemplate.address = {
-                    "address": results[0].formatted_address,
-                    "longitude": results[0].geometry.location.lng(),
-                    "latitude": results[0].geometry.location.lat()
-                  };
-                }
-              }
-            });
-          });
-        }, 500)
-      },
-      //Searchinto map
-      searchAddress(terms, done) {
-        let result = []
-        this.map.geocoder.geocode({'address': terms}, (results, status) => {
-          results.forEach(address => {
-            result.push({
-              label: address.formatted_address,
-              value: address.formatted_address,
-              latitude: address.geometry.location.lat(),
-              longitude: address.geometry.location.lng()
-            })
-          })
-          done(result)
-        });
-      },
-      //Get place categories
-      getCategories() {
-        this.loading.categories = true
-        let configName = 'apiRoutes.qplace.categories'
+      //Get civil status
+      getCivilStatus() {
+        this.loading.page = true
+        let configName = 'apiRoutes.qmembership.civilStatus'
         let params = {//Params to request
           refresh: true,
-          params: {include: 'parent'},
+          params: {include: ''},
         }
         //Request
         this.$crud.index(configName, params).then(response => {
-          this.options.categories = this.$helper.array.tree(response.data)
-
-          if (response.data.length)
-            this.locale.fields.categoryId = response.data[0].id
-
-          this.loading.categories = false
+          console.log(response.data);
+          for(var i=0;i<response.data.length;i++){
+            this.civilStatusOptions.push({id:i,value:i,label:response.data[i]});
+          }
+          // this.civilStatus = this.$helper.array.tree(response.data)
+          this.loading.page = false
         }).catch(error => {
           this.$alert.error({message: this.$tr('ui.message.errorRequest'), pos: 'bottom'})
-          this.loading.categories = false
+          this.loading.page = false
         })
       },
-      //Set address into map
-      selectAddress(item, keyboard) {
-        var location = new google.maps.LatLng(item.latitude, item.longitude);
-        this.map.marker.setPosition(location);
-        this.map.class.setCenter(location);
-        this.locale.formTemplate.address = {
-          "address": item.value,
-          "longitude": item.longitude,
-          "latitude": item.latitude
-        };
-      },
-      //Return object to validations
-      getObjectValidation() {
-        let response = {}
-        if (this.locale && this.locale.formValidations)
-          response = {locale: this.locale.formValidations}
-        return response
-      },
-      //Complete slug Only when is creation
-      setSlug() {
-        if (!this.itemId) {
-          let title = this.$clone(this.locale.formTemplate.title)
-          title = title.split(' ').join('-').toLowerCase()
-          this.locale.formTemplate.slug = this.$clone(title.normalize("NFD").replace(/[\u0300-\u036f]/g, ""))
+      //Get type identification
+      getTypeIdentifications() {
+        this.loading.page = true
+        let configName = 'apiRoutes.qmembership.documentType'
+        let params = {//Params to request
+          refresh: true,
+          params: {include: ''},
         }
+        //Request
+        this.$crud.index(configName, params).then(response => {
+          console.log(response.data);
+          for(var i=0;i<response.data.length;i++){
+            this.typeIdentificationOptions.push({id:i,value:i,label:response.data[i]});
+          }
+          // this.civilStatus = this.$helper.array.tree(response.data)
+          this.loading.page = false
+        }).catch(error => {
+          this.$alert.error({message: this.$tr('ui.message.errorRequest'), pos: 'bottom'})
+          this.loading.page = false
+        })
+      },
+      //Get studies
+      getStudies() {
+        this.loading.page = true
+        let configName = 'apiRoutes.qmembership.studies'
+        let params = {//Params to request
+          refresh: true,
+          params: {include: ''},
+        }
+        //Request
+        this.$crud.index(configName, params).then(response => {
+          console.log(response.data);
+          for(var i=0;i<response.data.length;i++){
+            this.studiesOptions.push({id:response.data[i].id,value:response.data[i].id,label:response.data[i].name});
+          }
+          // this.civilStatus = this.$helper.array.tree(response.data)
+          this.loading.page = false
+        }).catch(error => {
+          this.$alert.error({message: this.$tr('ui.message.errorRequest'), pos: 'bottom'})
+          this.loading.page = false
+        })
+      },
+      //Get studies
+      getProfessions() {
+        this.loading.page = true
+        let configName = 'apiRoutes.qmembership.professions'
+        let params = {//Params to request
+          refresh: true,
+          params: {include: ''},
+        }
+        //Request
+        this.$crud.index(configName, params).then(response => {
+          console.log(response.data);
+          for(var i=0;i<response.data.length;i++){
+            this.professionsOptions.push({id:response.data[i].id,value:response.data[i].id,label:response.data[i].name});
+          }
+          // this.civilStatus = this.$helper.array.tree(response.data)
+          this.loading.page = false
+        }).catch(error => {
+          this.$alert.error({message: this.$tr('ui.message.errorRequest'), pos: 'bottom'})
+          this.loading.page = false
+        })
+      },
+      //Get studies
+      getUsers() {
+        this.loading.page = true
+        let configName = 'apiRoutes.quser.users'
+        let params = {//Params to request
+          refresh: true,
+          params: {include: ''},
+        }
+        //Request
+        this.$crud.index(configName, params).then(response => {
+          console.log(response.data);
+          for(var i=0;i<response.data.length;i++){
+            this.usersOptions.push({id:response.data[i].id,value:response.data[i].id,label:response.data[i].firstName+response.data[i].lastName});
+          }
+          // this.civilStatus = this.$helper.array.tree(response.data)
+          this.loading.page = false
+        }).catch(error => {
+          this.$alert.error({message: this.$tr('ui.message.errorRequest'), pos: 'bottom'})
+          this.loading.page = false
+        })
       },
       //Create Product
       createItem() {

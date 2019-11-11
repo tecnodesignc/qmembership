@@ -15,4 +15,6 @@ export default {
   profiles: `${urlBase}/profiles`,
   address: `${urlBase}/address`,
   studies: `${urlBase}/studies`,
+  civilStatus: `${urlBase}/civil-status`,
+  documentType: `${urlBase}/document-type`,
 }

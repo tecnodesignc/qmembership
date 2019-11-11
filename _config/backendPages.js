@@ -85,7 +85,7 @@ export default {
         middleware: [auth, access]
     },
     study: {
-        permission: 'membership.study.index',
+        permission: null,
         activated: true,
         path: '/membership/studies/index',
         name: 'qmembership.admin.study',
@@ -106,5 +106,5 @@ export default {
         icon: 'fas fa-layer-group',
         middleware: [auth, access]
     },
-  
+
 }
