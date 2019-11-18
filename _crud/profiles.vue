@@ -10,7 +10,7 @@
           apiRoute: 'apiRoutes.qmembership.profiles',
           permission: 'membership.profiles',
           create: {
-            title: this.$tr('qmembership.layout.newPlace'),
+            title: this.$tr('qmembership.layout.newProfile'),
             to: 'qmembership.admin.profiles.create',
           },
           read: {

@@ -22,7 +22,14 @@
               },
               {name: 'actions', label: this.$tr('ui.form.actions'), align: 'left'},
             ],
-            requestParams: {}
+            requestParams: {},
+            actions : [
+              {
+                icon : 'fas fa-question-circle',
+                color : 'warning',
+                route : 'qmembership.admin.congregation'
+              },
+            ]
           },
           update: {
             title: this.$tr('qmembership.layout.updateDistrict'),

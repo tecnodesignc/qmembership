@@ -54,7 +54,7 @@ export default {
     congregation: {
         permission: 'membership.congregations.index',
         activated: true,
-        path: '/membership/congregation/index',
+        path: '/membership/congregation/index/:id',
         name: 'qmembership.admin.congregation',
         layout: require('@imagina/qmembership/_layouts/admin/congregations/index').default,
         containerLayout: master,
@@ -98,7 +98,7 @@ export default {
     workstation: {
         permission: 'membership.workstations.index',
         activated: true,
-        path: '/membership/workstations/index',
+        path: '/membership/workstations/index/:id',
         name: 'qmembership.admin.workstations',
         layout: require('@imagina/qmembership/_layouts/admin/workstations/index').default,
         containerLayout: master,

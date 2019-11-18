@@ -15,19 +15,21 @@
           read: {
             columns: [
               {name: 'id', label: this.$tr('ui.form.id'), field: 'id', style: 'width: 50px'},
-              {name: 'name', label: this.$tr('ui.form.title'), field: 'title', align: 'rigth'},
+              {name: 'name', label: this.$tr('ui.form.title'), field: 'name', align: 'rigth'},
               {name: 'slug', label: this.$tr('ui.form.slug'), field: 'slug', align: 'left'},
+              // {
+              //   name: 'district_id', label: this.$tr('ui.form.district'), field: 'district', align: 'left',
+              //   format: val => val ? (val.name ? val.name : '-') : '-'
+              // },
               {
-                name: 'district_id', label: this.$tr('ui.form.district'), field: 'district', align: 'left',
-                format: val => val ? (val.name ? val.name : '-') : '-'
-              },
-              {
-                name: 'created_at', label: this.$tr('ui.form.createdAt'), field: 'createdAt', align: 'left',
-                format: val => val ? this.$trd(val) : '-',
+                name: 'created_at', label: this.$tr('ui.form.createdAt'), field: 'createdAt', align: 'left'
               },
               {name: 'actions', label: this.$tr('ui.form.actions'), align: 'left'},
             ],
-            requestParams: {include: 'district'}
+            requestParams: {
+              include: 'district',
+              filter: {district:this.$route.params.id}
+            }
           },
           update: {
             title: this.$tr('qmembership.layout.updateCongregation'),
@@ -37,6 +39,7 @@
           formLeft: {
             id: {value: ''},
             userId: {value: this.$store.state.quserAuth.userId},
+            districtId: {value: this.$route.params.id},
             title: {
               label: this.$tr('ui.form.title'),
               value: '',

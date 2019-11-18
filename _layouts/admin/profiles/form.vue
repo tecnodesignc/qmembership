@@ -25,7 +25,7 @@
             v-model="form.congregationId"
             float-label="Congregación"
             filter
-            :disable="congregationsOptions.length>0 ? true : false"
+            :disable="congregationsOptions.length>0 ? false : true"
             :options="congregationsOptions"
             />
           </div>
@@ -35,21 +35,21 @@
             <!--Name-->
             <q-field>
               <q-input :stack-label="`${$tr('ui.form.name')}*`"
-                       type="text" v-model="form.name"/>
+                       type="text" v-model="form.user.name"/>
             </q-field>
           </div>
           <div class="col-12 col-md-4" >
             <!--lastName-->
             <q-field>
               <q-input :stack-label="`${$tr('ui.form.lastName')}*`"
-                       type="text" v-model="form.lastName"/>
+                       type="text" v-model="form.user.lastName"/>
             </q-field>
           </div>
           <div class="col-12 col-md-4" >
             <!-- email -->
             <q-field>
               <q-input :stack-label="`${$tr('ui.form.email')}*`"
-                       type="email" v-model="form.email"/>
+                       type="email" v-model="form.user.email"/>
             </q-field>
           </div>
 
@@ -95,10 +95,10 @@
             <q-radio v-model="form.options.ipucFavorable" val="false" label="Desfavorable" />
           </div>
 
-          <div class="col-12 col-md-4 text-center" v-if="form.options.ipuc">
+          <!-- <div class="col-12 col-md-4 text-center" v-if="form.options.ipuc">
             <label>Adjuntar</label>
             <q-uploader url="https://ipuc.upload/api" />
-          </div>
+          </div> -->
           <!-- end second row -->
 
           <!-- third row -->
@@ -251,9 +251,11 @@
         congregationsOptions:[],
         districtsOptions:[],
         form:{
-          name:'',
-          lastName:'',
-          email:'',
+          user:{
+            name:'',
+            lastName:'',
+            email:''
+          },
           civilStatus:0,
           identification:'',
           docType:0,
@@ -497,20 +499,20 @@
       },
       //Create Product
       createItem() {
-        this.$refs.localeComponent.vTouch()//Validate component locales
+        // this.$refs.localeComponent.vTouch()//Validate component locales
         //Check validations
-        if (!this.$v.$error) {
+        // if (!this.$v.$error) {
           this.loading.page = true
-          this.$crud.create(this.configName, this.locale.form).then(response => {
+          this.$crud.create(this.configName, this.form).then(response => {
             this.$alert.success({message: `${this.$tr('ui.message.recordCreated')}`})
             this.actionAfterCreated()
           }).catch(error => {
             this.$alert.error({message: this.$tr('ui.message.recordNoCreated'), pos: 'bottom'})
             this.loading.page = false
           })
-        } else {
-          this.$alert.error({message: this.$tr('ui.message.formInvalid'), pos: 'bottom'})
-        }
+        // } else {
+        //   this.$alert.error({message: this.$tr('ui.message.formInvalid'), pos: 'bottom'})
+        // }
       },
       //Action after created
       actionAfterCreated(id) {

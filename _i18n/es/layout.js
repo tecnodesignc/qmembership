@@ -17,4 +17,11 @@ export default {
     updateCommittee: 'Actualizar Comité',
     newProfile: 'Nuevo miembro',
     updateProfile: 'Actualizar miembro',
+    newCongregation: 'Nueva congregración',
+    updateCongregation: 'Actualizar congregración',
+    newWorkstation: 'Nueva estación de trabajo',
+    updateWorkstation: 'Actualizar estación de trabajo',
+    updateWorkstation: 'Actualizar estación de trabajo',
+    newStudy: 'Nuevo estudio',
+    updateStudy: 'Actualizar estudio',
 }

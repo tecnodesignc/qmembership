@@ -8,9 +8,9 @@ export default [
         children: [
           pages.qmembership.profession, // profiles setup
           pages.qmembership.district,
-          pages.qmembership.congregation,
+          // pages.qmembership.congregation,
           pages.qmembership.committee,
-          pages.qmembership.workstation,
+          // pages.qmembership.workstation,
           pages.qmembership.profiles, // profiles setup
           pages.qmembership.study, // study setup
             // pages.qmembership.categories, // categories setup

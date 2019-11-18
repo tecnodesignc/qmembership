@@ -10,25 +10,30 @@
           apiRoute: 'apiRoutes.qmembership.workstations',
           permission: 'membership.committees',
           create: {
-            title: this.$tr('qmembership.layout.newProfession'),
+            title: this.$tr('qmembership.layout.newWorkstation'),
           },
           read: {
             columns: [
               {name: 'id', label: this.$tr('ui.form.id'), field: 'id', style: 'width: 50px'},
-              {name: 'name', label: this.$tr('ui.form.title'), field: 'title', align: 'rigth'},
+              {name: 'name', label: this.$tr('ui.form.title'), field: 'name', align: 'rigth'},
               {
                 name: 'created_at', label: this.$tr('ui.form.createdAt'), field: 'createdAt', align: 'left',
                 format: val => val ? this.$trd(val) : '-',
               },
               {name: 'actions', label: this.$tr('ui.form.actions'), align: 'left'},
             ],
+            requestParams: {
+              include: '',
+              filter: {committee:this.$route.params.id}
+            }
           },
           update: {
-            title: this.$tr('qmembership.layout.updateProfession'),
+            title: this.$tr('qmembership.layout.updateWorkstation'),
           },
           delete: true,
           formLeft: {
             id: {value: ''},
+            committeeId: {value: this.$route.params.id},
             name: {
               label: this.$tr('ui.form.name'),
               value: '',

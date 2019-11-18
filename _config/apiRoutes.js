@@ -11,7 +11,7 @@ export default {
   districts: `${urlBase}/distric`,
   congregations: `${urlBase}/congregation`,
   committee: `${urlBase}/committee`,
-  workstations: `${urlBase}/wordstations`,
+  workstations: `${urlBase}/workstation`,
   profiles: `${urlBase}/profiles`,
   address: `${urlBase}/address`,
   studies: `${urlBase}/studies`,
