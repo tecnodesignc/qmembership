@@ -16,15 +16,18 @@
           read: {
             columns: [
               {name: 'id', label: this.$tr('ui.form.id'), field: 'id', style: 'width: 50px'},
-              {name: 'title', label: this.$tr('ui.form.title'), field: 'title', align: 'rigth'},
-              {name: 'slug', label: this.$tr('ui.form.slug'), field: 'slug', align: 'left'},
+              {name: 'identification', label: "Identificación", field: 'identification', style: 'width: 50px'},
+              {
+                name: 'user', label: "Usuario", field: 'user', align: 'left',
+                format: val => (val && val.first_name) ? val.first_name : ''
+              },
               {
                 name: 'created_at', label: this.$tr('ui.form.createdAt'), field: 'createdAt', align: 'left',
                 format: val => val ? this.$trd(val) : '-',
               },
               {name: 'actions', label: this.$tr('ui.form.actions'), align: 'left'},
             ],
-            requestParams: {include: ''}
+            requestParams: {include: 'user,study'}
           },
           update: {
             to: 'qmembership.admin.profiles.edit',

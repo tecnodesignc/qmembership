@@ -35,7 +35,7 @@
             <!--Name-->
             <q-field>
               <q-input :stack-label="`${$tr('ui.form.name')}*`"
-                       type="text" v-model="form.user.name"/>
+                       type="text" v-model="form.user.firstName"/>
             </q-field>
           </div>
           <div class="col-12 col-md-4" >
@@ -252,7 +252,7 @@
         districtsOptions:[],
         form:{
           user:{
-            name:'',
+            firstName:'',
             lastName:'',
             email:''
           },
@@ -322,7 +322,7 @@
             let params = {
               refresh: true,
               params: {
-                include: 'category,categories',
+                include: 'user,study',
                 filter: {allTranslations: true}
               }
             }
@@ -330,7 +330,7 @@
             this.$crud.show(this.configName, itemId, params).then(response => {
 
               //Replace categories to response
-              // response.data.categories = this.$clone(categories)
+              this.form = this.$clone(response.data)
               //Set response to form
               // this.locale.form = this.$clone(response.data)
               this.loading.page = false
@@ -442,7 +442,7 @@
         this.$crud.index(configName, params).then(response => {
           console.log(response.data);
           for(var i=0;i<response.data.length;i++){
-            this.usersOptions.push({id:response.data[i].id,value:response.data[i].id,label:response.data[i].firstName+response.data[i].lastName});
+            this.usersOptions.push({id:response.data[i].id,value:response.data[i].id,label:response.data[i].firstName+' '+response.data[i].lastName});
           }
           // this.civilStatus = this.$helper.array.tree(response.data)
           this.loading.page = false
