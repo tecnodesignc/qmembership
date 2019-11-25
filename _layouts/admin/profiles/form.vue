@@ -9,6 +9,15 @@
       <div class="box">
         <div class="row gutter-x-sm">
 
+          <div class="col-12 col-md-12 text-center">
+            <div class="input-title">{{$tr('ui.form.image')}}</div>
+            <upload-media
+              v-model="form.mediasSingle"
+              entity="Modules\Membership\Entities\Profile"
+              :entity-id="itemId ? itemId : null"
+              zone='mainimage'
+            />
+          </div>
 
           <div class="col-12 col-md-6">
             <q-select
@@ -227,10 +236,11 @@
   import mediaForm from '@imagina/qmedia/_components/form'
   import recursiveList from 'src/components/master/recursiveListSelect'
   import schedulesForm from 'src/components/master/schedules'
+  import uploadMedia from '@imagina/qmedia/_components/form'
 
   export default {
     props: {},
-    components: {locales, mediaForm, recursiveList, schedulesForm},
+    components: {locales, mediaForm, recursiveList, schedulesForm,uploadMedia},
     mounted() {
       this.$nextTick(function () {
         this.init()
@@ -256,6 +266,7 @@
             lastName:'',
             email:''
           },
+          mediasSingle: {},
           civilStatus:0,
           identification:'',
           docType:0,
@@ -356,7 +367,6 @@
         }
         //Request
         this.$crud.index(configName, params).then(response => {
-          console.log(response.data);
           for(var i=0;i<response.data.length;i++){
             this.civilStatusOptions.push({id:i,value:i,label:response.data[i]});
           }
@@ -377,7 +387,6 @@
         }
         //Request
         this.$crud.index(configName, params).then(response => {
-          console.log(response.data);
           for(var i=0;i<response.data.length;i++){
             this.typeIdentificationOptions.push({id:i,value:i,label:response.data[i]});
           }
@@ -398,7 +407,6 @@
         }
         //Request
         this.$crud.index(configName, params).then(response => {
-          console.log(response.data);
           for(var i=0;i<response.data.length;i++){
             this.studiesOptions.push({id:response.data[i].id,value:response.data[i].id,label:response.data[i].name});
           }
@@ -419,7 +427,6 @@
         }
         //Request
         this.$crud.index(configName, params).then(response => {
-          console.log(response.data);
           for(var i=0;i<response.data.length;i++){
             this.professionsOptions.push({id:response.data[i].id,value:response.data[i].id,label:response.data[i].name});
           }
@@ -440,7 +447,6 @@
         }
         //Request
         this.$crud.index(configName, params).then(response => {
-          console.log(response.data);
           for(var i=0;i<response.data.length;i++){
             this.usersOptions.push({id:response.data[i].id,value:response.data[i].id,label:response.data[i].firstName+' '+response.data[i].lastName});
           }
@@ -465,7 +471,6 @@
         }
         //Request
         this.$crud.index(configName, params).then(response => {
-          console.log(response.data);
           for(var i=0;i<response.data.length;i++){
             this.congregationsOptions.push({id:response.data[i].id,value:response.data[i].id,label:response.data[i].name});
           }
@@ -486,7 +491,6 @@
         }
         //Request
         this.$crud.index(configName, params).then(response => {
-          console.log(response.data);
           for(var i=0;i<response.data.length;i++){
             this.districtsOptions.push({id:response.data[i].id,value:response.data[i].id,label:response.data[i].name});
           }
