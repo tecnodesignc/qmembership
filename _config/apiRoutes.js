@@ -9,13 +9,14 @@ export default {
   province:`/v2/ilocations/provinces`,
   city:`/v2/ilocations/cities`,
   congregations: `${urlBase}/congregation`,
-  dsitrict: `${urlBase}/district`,
-  study: `${urlBase}/study`,
-  profession: `${urlBase}/profession`,
+  districts: `${urlBase}/district`,
+  studies: `${urlBase}/study`,
+  professions: `${urlBase}/profession`,
   civilStatus: `${urlBase}/profile/civil-status`,
   type: `${urlBase}/profile/type`,
   documentType: `${urlBase}/profile/document-type`,
-  committee: `${urlBase}/committee`,
-  profile: `${urlBase}/profile`,
-  workstation: `${urlBase}/workstation`
+  committees: `${urlBase}/committee`,
+  address: `${urlBase}/address`,
+  profiles: `${urlBase}/profile`,
+  workstations: `${urlBase}/workstation`
 }

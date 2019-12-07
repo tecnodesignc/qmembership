@@ -1,3 +1,4 @@
+
 export default {
     district: {
         permission: 'membership.districts.manage',
@@ -7,8 +8,8 @@ export default {
         name: 'qmembership.admin.district',
         page: () => import('@imagina/qmembership/_pages/admin/districts/index'),
         layout: () => import('@imagina/qsite/_layouts/master.vue'),
-        title: 'qmembership.layout.distric.plural',
-        icon: 'fas fa-home',
+        title: 'qmembership.layout.district.plural',
+        icon: 'fas fa-globe',
     },
     congregation: {
         permission: 'membership.congregations.manage',
@@ -19,7 +20,7 @@ export default {
         page: () => import('@imagina/qmembership/_pages/admin/congregations/index'),
         layout: () => import('@imagina/qsite/_layouts/master.vue'),
         title: 'qmembership.layout.congregation.plural',
-        icon: 'fas fa-layer-group',
+        icon: 'fas fa-place-of-worship',
     },
     study: {
         permission: 'membership.studies.manage',
@@ -30,7 +31,7 @@ export default {
         page: () => import('@imagina/qmembership/_pages/admin/studies/index'),
         layout: () => import('@imagina/qsite/_layouts/master.vue'),
         title: 'qmembership.layout.study.plural',
-        icon: 'fas fa-layer-group',
+        icon: 'fas fa-graduation-cap',
     },
     profession: {
         permission: 'membership.professions.manage',
@@ -41,7 +42,7 @@ export default {
         page: () => import('@imagina/qmembership/_pages/admin/professions/index'),
         layout: () => import('@imagina/qsite/_layouts/master.vue'),
         title: 'qmembership.layout.profession.plural',
-        icon: 'fas fa-layer-group',
+        icon: 'fas fa-user-tie',
     },
     committee: {
         permission: 'membership.committees.manage',
@@ -52,7 +53,7 @@ export default {
         page: () => import('@imagina/qmembership/_pages/admin/committees/index'),
         layout: () => import('@imagina/qsite/_layouts/master.vue'),
         title: 'qmembership.layout.committee.plural',
-        icon: 'fas fa-layer-group',
+        icon: 'fas fa-users',
     },
     profile: {
         permission: 'membership.profiles.manage',
@@ -63,7 +64,7 @@ export default {
         page: () => import('@imagina/qmembership/_pages/admin/profiles/index'),
         layout: () => import('@imagina/qsite/_layouts/master.vue'),
         title: 'qmembership.layout.profile.plural',
-        icon: 'fas fa-layer-group',
+        icon: 'fas fa-user-cog',
     },
     workstation: {
         permission: 'membership.workstations.manage',
@@ -74,7 +75,6 @@ export default {
         page: () => import('@imagina/qmembership/_pages/admin/workstations/index'),
         layout: () => import('@imagina/qsite/_layouts/master.vue'),
         title: 'qmembership.layout.workstation.plural',
-        icon: 'fas fa-layer-group',
-    },
-
+        icon: 'fas fa-people-carry',
+    }
 }
