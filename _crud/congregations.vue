@@ -49,7 +49,6 @@
                   filters: {},
                },
                update: {
-                  to: 'qmembership.admin.congregation.edit',
                   requestParams: {include: 'district'}
                },
                delete: true,

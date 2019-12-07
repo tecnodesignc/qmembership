@@ -5,8 +5,8 @@
          crudData() {
             return {
                crudId: this.$uid(),
-               apiRoute: 'apiRoutes.qmembership.addresses',
-               permission: 'profile.addresses',
+               apiRoute: 'apiRoutes.qmembership.address',
+               //permission: 'profile.addresses',
                create: {
                   title: this.$tr('qmembership.layout.address.new'),
                },
@@ -73,7 +73,7 @@
                      },
                      loadOptions: { //Async load options form request, only in types [select, multiSelect]
                         apiRoute: 'apiRoutes.qmembership.province', //apiRoute to request
-                        requestParams: {filter: {country: this.crudInfo.countryId}},
+                        requestParams: {filter: {country: 48}},
                         select: {label: 'name', id: 'id'},
                      }
                   },
@@ -89,7 +89,7 @@
                      },
                      loadOptions: { //Async load options form request, only in types [select, multiSelect]
                         apiRoute: 'apiRoutes.qmembership.city', //apiRoute to request
-                        requestParams: {filter: {province: this.crudInfo.provinceId}},
+                        requestParams: {filter: {province: 787}},
                         select: {label: 'name', id: 'id'},
                      }
                   },

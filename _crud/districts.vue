@@ -51,7 +51,6 @@
                   filters: {},
                },
                update: {
-                  to: 'qmembership.admin.district.edit',
                   requestParams: {}
                },
                delete: true,
