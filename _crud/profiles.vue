@@ -95,6 +95,7 @@
                update: {
                   to: 'qmembership.admin.profile.edit',
                   requestParams: {}
+
                },
                delete: true,
                formLeft: {

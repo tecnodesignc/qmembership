@@ -1,7 +1,5 @@
 <template></template>
 <script>
-   import crud from '@imagina/qcrud/_components/crud'
-
    export default {
       data() {
          return {
@@ -32,18 +30,6 @@
                         align: 'left'
                      },
                      {
-                        name: 'slug',
-                        label: this.$tr('qmembership.layout.form.slug'),
-                        field: 'slug',
-                        align: 'left'
-                     },
-                     {
-                        name: 'address',
-                        label: this.$tr('qmembership.layout.form.address.title'),
-                        field: 'mainAddress',
-                        align: 'left'
-                     },
-                     {
                         name: 'created_at',
                         label: this.$tr('ui.form.createdAt'),
                         field: 'createdAt',
@@ -59,23 +45,8 @@
                      },
                      {name: 'actions', label: this.$tr('ui.form.actions'), align: 'right'},
                   ],
-                  requestParams: {include: 'address'},
-                  filters: {
-                     districtId: {
-                        value: 0,
-                        type: 'select',
-                        loadOptions: {
-                           apiRoute: 'apiRoutes.qmembership.districts',
-                           select: {label: 'name', id: 'id'}
-                        },
-                        props: {
-                           label: `${this.$tr('qmembership.layout.district.title')}:`,
-                           options: [
-                              {label: this.$tr('ui.label.all'), value: 0}
-                           ],
-                        }
-                     },
-                  },
+                  requestParams: {},
+                  filters: {},
                },
                update: {
                   to: 'qmembership.admin.congregation.edit',
@@ -83,6 +54,7 @@
                },
                delete: true,
                formLeft: {
+
                   name: {
                      value: null,
                      type: 'input',
@@ -93,18 +65,6 @@
                            val => !!val || this.$tr('ui.message.fieldRequired')
                         ]
                      }
-                  },
-                  slug: {
-                     value: '',
-                     type: 'input',
-                     isTranslatable: true,
-                     props: {
-                        label: `${this.$tr('ui.form.slug')}*`,
-                        vIf: (this.crudInfo.typeForm == 'update'),
-                        rules: [
-                           val => !!val || this.$tr('ui.message.fieldRequired')
-                        ],
-                     },
                   },
                   description: {
                      value: '',
@@ -131,9 +91,12 @@
                               val => !!val || this.$tr('ui.message.fieldRequired')
                            ],
                         },
+                        config: {
+                           options: {label: 'name', value: 'id'},
+                        }
                      },
                   },
-                  address: {
+                  addresses: {
                      value: [],
                      type: 'crud',
                      props: {
@@ -150,7 +113,7 @@
                      value: null,
                      type: 'input',
                      props: {
-                        label: `${this.$trp('uqmembership.layout.social')}`,
+                        label: `${this.$trp('qmembership.layout.form.social')}`,
                         type: 'textarea',
                         rows: 2,
                      }
