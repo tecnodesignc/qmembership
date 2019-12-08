@@ -246,7 +246,7 @@
                      },
                      loadOptions: { //Async load options form request, only in types [select, multiSelect]
                         apiRoute: 'apiRoutes.qmembership.province', //apiRoute to request
-                        requestParams: {filter: {country: this.crudInfo.birthCountryId}},
+                        requestParams: {filter: {country: 48}},
                         select: {label: 'name', id: 'id'},
                      }
                   },
@@ -262,7 +262,7 @@
                      },
                      loadOptions: { //Async load options form request, only in types [select, multiSelect]
                         apiRoute: 'apiRoutes.qmembership.city', //apiRoute to request
-                        requestParams: {filter: {province: this.crudInfo.birthProvinceId}},
+                        requestParams: {filter: {province: 787}},
                         select: {label: 'name', id: 'id'},
                      }
                   },
@@ -288,6 +288,9 @@
                               val => !!val || this.$tr('ui.message.fieldRequired')
                            ],
                         },
+                         config: {
+                             options: {label: 'name', value: 'id'},
+                         },
                      },
                   },
                   professionId: {
@@ -302,6 +305,9 @@
                               val => !!val || this.$tr('ui.message.fieldRequired')
                            ],
                         },
+                         config: {
+                             options: {label: 'name', value: 'id'},
+                         },
                      },
                   },
                   civilStatus: {
@@ -326,8 +332,8 @@
                         label: `${this.$tr('qmembership.layout.profile.ecclesiasticalCourt')}*`,
                         vIf: this.crudInfo.civilStatus == 2,
                         options: [
-                           {label: this.$tr('ui.label.yes'), value: '1'},
-                           {label: this.$tr('ui.label.no'), value: '0'},
+                           {label: this.$tr('ui.label.yes'), value: 1},
+                           {label: this.$tr('ui.label.no'), value: 0 },
                         ],
                      }
                   },
@@ -337,7 +343,7 @@
                      isFakeField: true,
                      props: {
                         label: `${this.$tr('qmembership.layout.profile.ecclesiasticalAnswer.label')}*`,
-                        vIf: this.crudInfo.ecclesiasticalCourt == 1,
+                        vIf: this.crudInfo.civilStatus == 2,
                         options: [
                            {
                               label: this.$tr('qmembership.layout.profile.ecclesiasticalAnswer.favorable'),
@@ -355,7 +361,7 @@
                      type: 'media',
                      props: {
                         label: this.$tr('ui.form.image'),
-                        vIf: this.crudInfo.ecclesiasticalCourt == 1,
+                        vIf: this.crudInfo.civilStatus == 2,
                         zone: 'ecclesiasticalanswer',
                         entity: "Modules\\Membership\\Entities\\Profile",
                         enitityId: null
@@ -386,7 +392,7 @@
                      },
                      loadOptions: { //Async load options form request, only in types [select, multiSelect]
                         apiRoute: 'apiRoutes.qmembership.province', //apiRoute to request
-                        requestParams: {filter: {country: this.crudInfo.baptismCountryId}},
+                        requestParams: {filter: {country: 47}},
                         select: {label: 'name', id: 'id'},
                      }
                   },
@@ -402,7 +408,7 @@
                      },
                      loadOptions: { //Async load options form request, only in types [select, multiSelect]
                         apiRoute: 'apiRoutes.qmembership.city', //apiRoute to request
-                        requestParams: {filter: {province: this.crudInfo.baptismProvinceId}},
+                        requestParams: {filter: {province: 787}},
                         select: {label: 'name', id: 'id'},
                      }
                   },
