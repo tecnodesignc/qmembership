@@ -1,7 +1,5 @@
 <template></template>
 <script>
-   import crud from '@imagina/qcrud/_components/crud'
-
    export default {
       data() {
          return {
@@ -51,7 +49,7 @@
                   filters: {},
                },
                update: {
-                  to: 'qmembership.admin.committee.edit',
+                   title: this.$tr('qmembership.layout.committee.update'),
                   requestParams: {}
                },
                delete: true,

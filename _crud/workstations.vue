@@ -1,7 +1,5 @@
 <template></template>
 <script>
-   import crud from '@imagina/qcrud/_components/crud'
-
    export default {
       data() {
          return {
@@ -144,8 +142,21 @@
                               val => !!val || this.$tr('ui.message.fieldRequired')
                            ],
                         },
+                         config: {
+                             options: {label: 'name', value: 'id'},
+                         },
                      },
                   },
+                   period: {
+                       value: new Date().getFullYear(),
+                       type: 'input',
+                       props: {
+                           label: `${this.$trp('qmembership.layout.workstation.period')}*`,
+                           rules: [
+                               val => !!val || this.$tr('ui.message.fieldRequired')
+                           ]
+                       }
+                   },
                }
             }
          },

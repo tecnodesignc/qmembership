@@ -2,6 +2,7 @@ export default {
    title: 'Membresia',
    congregation: {
       new: 'Nueva Congregación',
+      update: 'Actualizar Congregación',
       title: 'Congregacion',
       plural: 'Congregaciones',
    },
@@ -14,6 +15,7 @@ export default {
    address: {
       new: 'Nueva Direccion',
       update: 'Actualizar Direccion',
+      update: 'Actualizar Direccion',
       title: 'Direccion',
       plural: 'Direcciones',
       phone: 'Telefono',
@@ -25,28 +27,31 @@ export default {
    },
    district: {
       new: 'Nuevo Distrito',
+      update: 'Actualizar Distrito',
       title: 'Distrito',
       plural: 'Distritos',
    },
    study: {
       new: 'Nuevo Nivel de Estudio',
+      update: 'Actualizar Nivel de Estudio',
       title: 'Nivel de Estudio',
       plural: 'Niveles de Estudio',
    },
    profession: {
       new: 'Nueva Profesión',
+      update: 'Actualizar Profesión',
       title: 'profesión',
       plural: 'Profesiones',
    },
    committee: {
-      add: 'Nueva Directiva Local',
       new: 'Nueva Directiva Local',
+      update: 'Actualizar Directiva Local',
       title: 'Directiva Local',
       plural: 'Directivas Local',
    },
    profile: {
-      add: 'Nuevo Registro',
       new: 'Nuevo Registro',
+      update: 'Actualizar Registro',
       title: 'Miembro de la congregacion',
       plural: 'Miembros de la congregacion',
       identification: 'N° de Documento',
@@ -76,7 +81,9 @@ export default {
    },
    workstation: {
       new: 'Nuevo Cargo',
+      update: 'Actualizar Cargo',
       title: 'Cargo',
       plural: 'Cargos en la Iglesia',
+      period:'Año de Vigencia'
    },
 }
