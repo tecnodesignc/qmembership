@@ -166,7 +166,7 @@
                      value: null,
                      type: 'input',
                      props: {
-                        label: `${this.$trp('ui.form.email')} *`,
+                        label: `${this.$trp('qmembership.layout.profile.email')} *`,
                         name: 'user["eamil"]',
                         rules: [
                            val => !!val || this.$tr('ui.message.fieldRequired'),
@@ -218,53 +218,16 @@
                         enitityId: null
                      }
                   },
-                  birthCountryId: {
-                     value: null,
-                     type: 'select',
-                     noCrud: true,
-                     props: {
-                        label: `${this.$tr('qmembership.layout.profile.birthCountry')}*`,
-                        rules: [
-                           val => !!val || this.$tr('ui.message.fieldRequired')
-                        ],
-                     },
-                     loadOptions: { //Async load options form request, only in types [select, multiSelect]
-                        apiRoute: 'apiRoutes.qmembership.country', //apiRoute to request
-                        select: {label: 'name', id: 'id'},
-                     }
-                  },
-                  birthProvinceId: {
-                     value: null,
-                     type: 'select',
-                     noCrud: true,
-                     props: {
-                        label: `${this.$tr('qmembership.layout.profile.birthProvince')}*`,
-                        rules: [
-                           val => !!val || this.$tr('ui.message.fieldRequired')
-                        ],
-                        vIf: (this.crudInfo.birthCountryId)
-                     },
-                     loadOptions: { //Async load options form request, only in types [select, multiSelect]
-                        apiRoute: 'apiRoutes.qmembership.province', //apiRoute to request
-                        requestParams: {filter: {country: 48}},
-                        select: {label: 'name', id: 'id'},
-                     }
-                  },
                   birthplace: {
                      value: null,
-                     type: 'select',
+                     type: 'input',
                      props: {
                         label: `${this.$tr('qmembership.layout.profile.birthCity')}*`,
                         rules: [
                            val => !!val || this.$tr('ui.message.fieldRequired')
                         ],
-                        vIf: (this.crudInfo.birthProvinceId)
                      },
-                     loadOptions: { //Async load options form request, only in types [select, multiSelect]
-                        apiRoute: 'apiRoutes.qmembership.city', //apiRoute to request
-                        requestParams: {filter: {province: 787}},
-                        select: {label: 'name', id: 'id'},
-                     }
+
                   },
                   birthday: {
                      value: null,
@@ -343,7 +306,7 @@
                      isFakeField: true,
                      props: {
                         label: `${this.$tr('qmembership.layout.profile.ecclesiasticalAnswer.label')}*`,
-                        vIf: this.crudInfo.civilStatus == 2,
+                        vIf: this.crudInfo.ecclesiasticalCourt == '1',
                         options: [
                            {
                               label: this.$tr('qmembership.layout.profile.ecclesiasticalAnswer.favorable'),
@@ -361,56 +324,21 @@
                      type: 'media',
                      props: {
                         label: this.$tr('ui.form.image'),
-                        vIf: this.crudInfo.civilStatus == 2,
+                        vIf: this.crudInfo.ecclesiasticalCourt == '1',
                         zone: 'ecclesiasticalanswer',
                         entity: "Modules\\Membership\\Entities\\Profile",
                         enitityId: null
                      }
                   },
-                  baptismCountryId: {
-                     value: null,
-                     type: 'select',
-                     noCrud: true,
-                     props: {
-                        label: `${this.$tr('qmembership.layout.profile.baptismCountry')}*`,
-                     },
-                     loadOptions: { //Async load options form request, only in types [select, multiSelect]
-                        apiRoute: 'apiRoutes.qmembership.country', //apiRoute to request
-                        select: {label: 'name', id: 'id'},
-                     }
-                  },
-                  baptismProvinceId: {
-                     value: null,
-                     type: 'select',
-                     noCrud: true,
-                     props: {
-                        label: `${this.$tr('qmembership.layout.profile.baptismProvince')}*`,
-                        rules: [
-                           val => !!val || this.$tr('ui.message.fieldRequired')
-                        ],
-                        vIf: (this.crudInfo.baptismCountryId)
-                     },
-                     loadOptions: { //Async load options form request, only in types [select, multiSelect]
-                        apiRoute: 'apiRoutes.qmembership.province', //apiRoute to request
-                        requestParams: {filter: {country: 47}},
-                        select: {label: 'name', id: 'id'},
-                     }
-                  },
                   baptismCity: {
                      value: null,
-                     type: 'select',
+                     type: 'input',
                      props: {
                         label: `${this.$tr('qmembership.layout.profile.baptismCity')}*`,
                         rules: [
                            val => !!val || this.$tr('ui.message.fieldRequired')
                         ],
-                        vIf: (this.crudInfo.bbaptismProvinceId)
                      },
-                     loadOptions: { //Async load options form request, only in types [select, multiSelect]
-                        apiRoute: 'apiRoutes.qmembership.city', //apiRoute to request
-                        requestParams: {filter: {province: 787}},
-                        select: {label: 'name', id: 'id'},
-                     }
                   },
                   baptismDate: {
                      value: null,
@@ -430,7 +358,7 @@
                         },
                         config: {
                            options: {label: 'fullName', value: 'id'},
-                           requestParams: {filter: {roleSlug: 'minister'}}
+                           requestParams: {filter: {roleSlug: 'ministro'}}
                         },
                      },
                   },
