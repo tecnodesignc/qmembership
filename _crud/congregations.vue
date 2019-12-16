@@ -95,19 +95,34 @@
                         }
                      },
                   },
-                  addresses: {
-                     value: [],
-                     type: 'crud',
+                  address: {
+                     value: null,
+                     type: 'input',
                      props: {
-                        crudType: 'select',
-                        crudData: import('@imagina/qmembership/_crud/address'),
-                        crudProps: {
-                           label: this.$trp('qmembership.layout.address.title'),
-                           multiple: true,
-                           useChips: true
-                        },
+                         label: `${this.$trp('qmembership.layout.form.address')} *`,
+                         rules: [
+                             val => !!val || this.$tr('ui.message.fieldRequired')
+                         ]
                      },
                   },
+                   phone: {
+                       value: null,
+                       type: 'input',
+                       props: {
+                           mask:"(###) ### - ####",
+                           label: `${this.$trp('qmembership.layout.form.phone')}`,
+                       },
+                   },
+                   city: {
+                       value: null,
+                       type: 'input',
+                       props: {
+                           label: `${this.$trp('qmembership.layout.form.city')} *`,
+                           rules: [
+                               val => !!val || this.$tr('ui.message.fieldRequired')
+                           ]
+                       },
+                   },
                   social: {
                      value: null,
                      type: 'input',

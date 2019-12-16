@@ -243,6 +243,8 @@
                                 ],
                             }
                         },
+
+
                         studyId: {
                             value: null,
                             type: 'crud',
@@ -277,6 +279,8 @@
                                 },
                             },
                         },
+
+
                         civilStatus: {
                             value: null,
                             type: 'select',

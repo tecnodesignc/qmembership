@@ -58,26 +58,34 @@ export default {
       email: 'E-Mail',
       type: 'Estado en la Iglesia',
       documentType: 'Tipo de Documento',
-      birthCity: 'Ciudad de Nacimineto',
+      birthplace: 'Ciudad de Nacimineto',
       birthProvince: 'Departamento de Nacimineto',
       birthCountry: 'Pais Nacimineto',
       birthday: 'Fecha de Nacimineto',
       civilStatus: 'Estado Civil',
-      ecclesiasticalCourt: 'Tribunal Eclesiatico IPUC',
+      ecclesiasticalCourt: 'Su divorcio paso por el tribunal Eclesiatico de la IPUC',
       ecclesiasticalAnswer: {
          label: 'Concepto del Tribunal Eclesiatico IPUC',
          favorable: 'Favorable',
          unfavorable: 'Desfavorable',
+         file:'Subir archivo de respuesta',
       },
+      marriageRegistration:'Registro de matrimonio',
       spouse: 'Conyuge',
       children: 'Hijos',
+      hasChild:'Tiene Hijos',
       baptismCity: 'Ciudad de Bautismo',
       baptismProvince: 'Departamento de Bautismo',
       baptismCountry: 'Pais Bautismo',
       baptismDate: 'Fecha de Bautismo',
       minister: 'Pastor que lo Bautizo',
       holySpiritDate: 'Fecha de recepción del Espiritu Santo',
-      notes: 'Notas ',
+
+      gender:{
+         title:'Genero',
+         men:'Masculino',
+         women:'Femenino'
+      }
    },
    workstation: {
       new: 'Nuevo Cargo',
@@ -85,5 +93,11 @@ export default {
       title: 'Cargo',
       plural: 'Cargos en la Iglesia',
       period:'Año de Vigencia'
+   },
+   notes:{
+      new: 'Notas',
+      update: 'Actualizar Nota',
+      title: 'Nota',
+      plural: 'Motas',
    },
 }
